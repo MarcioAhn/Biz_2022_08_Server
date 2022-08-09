@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.todo.persistance.TodoDao">
+ 
+ 	<select id="findByAuthor" resultType="TodoVO">
+ 		SELECT * FROM tbl_todoList
+ 		WHERE t_seq = #{t_seq}
+ 	</select>
+ 
+ 	<select id="selectAll" resultType="TodoVO">
+ 		SELECT * FROM tbl_todoList
+ 		ORDER BY t_sdate ASC, t_stime ASC
+ 	</select>
+ 	<select id="findById" resultType="TodoVO">
+ 		SELECT * FROM tbl_todoList 
+ 		WHERE t_seq = #{t_seq}
+ 	</select>
+ 	<insert id="insert" parameterType="TodoVO">
+ 		INSERT INTO tbl_todoList(
+ 		
+ 			t_sdate,
+ 			t_stime,
+ 			t_content
+ 			
+ 		) VALUES (
+ 			
+ 			#{t_sdate},
+ 			#{t_stime},
+ 			#{t_content}
+ 			
+ 		)
+ 	</insert>
+ 	<update id="update" parameterType="TodoVO">
+ 		UPDATE tbl_todoList SET
+ 			t_content = #{t_content}
+ 		WHERE t_seq = #{t_seq}
+ 	</update>
+ 	<update id="complete" parameterType="TodoVO">
+ 		UPDATE tbl_todoList SET
+ 			t_edate = #{t_edate}
+ 			t_etime = #{t_etime}
+ 		WHERE t_seq = #{t_seq}
+ 	</update>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_todoList
+ 		WHERE t_seq = #{t_seq}
+ 	</delete>
+ 	
+ 	
+ 	<select id="create_todo_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_todoList (
+ 			t_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
+ 			t_author VARCHAR(10),
+ 			t_sdate VARCHAR(10) ,
+ 			t_stime VARCHAR(10) ,
+ 			t_content VARCHAR(40) ,
+ 			t_edate VARCHAR(10) ,
+ 			t_etime VARCHAR(10) 	
+ 		)	
+ 	</select>
+ 	
+ 	
+ 
+ </mapper> 

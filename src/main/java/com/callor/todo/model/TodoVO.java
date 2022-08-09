@@ -7,15 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class AuthorityVO {
+public class TodoVO {
 
-	private long seq;
-	private String username;
-	private String authority;
+	private long t_seq;
+	private String t_author;
+	private String t_sdate;
+	private String t_stime;
+	private String t_content;
+	private String t_edate;
+	private String t_etime;
 }
